@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Login form validation
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = loginForm.email.value.trim();
+            const password = loginForm.password.value.trim();
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+
+            alert('Login successful!');
+            loginForm.submit();
+        });
+    }
+
+    // Registration form validation
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = registerForm.name.value.trim();
+            const email = registerForm.email.value.trim();
+            const password = registerForm.password.value.trim();
+            const confirmPassword = registerForm.confirmPassword.value.trim();
+
+            if (name === '') {
+                alert('Name is required.');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            alert('Registration successful!');
+            registerForm.submit();
+        });
+    }
+});
+
+// Email validation function
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Hospital Registration</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+        <form id="registerForm" onsubmit="return validateRegistration()">
+            <label for="registerName">Name:</label>
+            <input type="text" id="registerName" name="name" required>
+            <label for="registerEmail">Email:</label>
+            <input type="email" id="registerEmail" name="email" required>
+            <label for="registerPassword">Password:</label>
+            <input type="password" id="registerPassword" name="password" required>
+            <label for="registerConfirmPassword">Confirm Password:</label>
+            <input type="password" id="registerConfirmPassword" name="confirmPassword" required>
+            <button type="submit">Register</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Our Hospital. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
